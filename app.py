@@ -8,7 +8,7 @@ DB = os.path.join(BASE_DIR, "database.db")
 UPLOAD_DIR = os.path.join(BASE_DIR, "static", "uploads")
 ALLOWED = {"png", "jpg", "jpeg", "webp", "gif"}
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=".", static_folder=".")
 app.secret_key = "change-this-secret-key-in-production"
 app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
 os.makedirs(UPLOAD_DIR, exist_ok=True)
