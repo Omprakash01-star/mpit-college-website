@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: mpit-college-website
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
