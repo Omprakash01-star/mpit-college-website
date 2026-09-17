@@ -1,1 +1,99 @@
-{% extends "base.html" %}{% block content %}<section class="page-head"><span class="eyebrow">CONTACT</span><h1>Contact Us</h1></section><section class="section contact-grid"><div class="card"><h2>College Address</h2><p>{{site.address}}</p></div><div class="card"><h2>Phone</h2><p>{{site.phone}}</p></div><div class="card"><h2>Email</h2><p>{{site.email}}</p></div></section>{% endblock %}
+{% extends "base.html" %}
+
+{% block title %}Contact | {{ site.college_name }}{% endblock %}
+
+{% block content %}
+
+<section class="page-head">
+  <span class="eyebrow">GET IN TOUCH</span>
+  <h1>Contact Us</h1>
+  <p>We are here to help you with your queries and admission enquiries.</p>
+</section>
+
+
+<section class="section">
+
+  <div class="grid three">
+
+    <!-- Phone -->
+    <div class="card">
+      <h3>📞 Phone</h3>
+      <p>6390853515</p>
+      <a class="btn" href="tel:6390853515">
+        Call Now
+      </a>
+    </div>
+
+
+    <!-- College Time -->
+    <div class="card">
+      <h3>🕙 College Time</h3>
+      <p><strong>10:00 AM to 5:00 PM</strong></p>
+      <p>Contact us during college working hours.</p>
+    </div>
+
+
+    <!-- Address -->
+    <div class="card">
+      <h3>📍 College Address</h3>
+      <p>
+        Bhachhraun,<br>
+        Amroha, Uttar Pradesh<br>
+        PIN Code: 244225
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- Google Map -->
+<section class="section">
+
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">OUR LOCATION</span>
+      <h2>Find Us on Google Maps</h2>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <iframe
+      src="https://www.google.com/maps?q=Bhachhraun%2C%20Amroha%2C%20Uttar%20Pradesh%20244225&output=embed"
+      width="100%"
+      height="450"
+      style="border:0; border-radius:12px;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+  </div>
+
+</section>
+
+
+<!-- Contact CTA -->
+<section class="section">
+
+  <div class="card" style="text-align:center;">
+
+    <span class="eyebrow">ADMISSION ENQUIRY</span>
+
+    <h2>Need More Information?</h2>
+
+    <p>
+      Call us for admission details, courses and other college enquiries.
+    </p>
+
+    <a class="btn" href="tel:6390853515">
+      📞 Call 6390853515
+    </a>
+
+  </div>
+
+</section>
+
+{% endblock %}
