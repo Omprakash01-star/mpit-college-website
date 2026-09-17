@@ -1,27 +1,222 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="page-head">
-  <span class="eyebrow">OUR FACULTY</span>
-  <h1>Faculty</h1>
-  <p>Meet our teaching staff.</p>
-</section>
 
-<section class="section">
-  <div class="grid three">
-    {% for f in faculty %}
-    <div class="person">
-      {% if f.photo %}
-      <img src="{{ url_for('static', filename='uploads/' + f.photo) }}" alt="{{ f.name }}">
-      {% else %}
-      <div class="avatar">👤</div>
-      {% endif %}
+<style>
+.faculty-page {
+    padding: 55px 6%;
+    background: #f5f8fc;
+}
 
-      <h2>{{ f.name }}</h2>
-      <p>{{ f.designation }}</p>
-      <p>{{ f.qualification }}</p>
+.faculty-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.faculty-title .tag {
+    display: inline-block;
+    padding: 7px 18px;
+    background: #e7f0ff;
+    color: #1456a0;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.faculty-title h1 {
+    margin: 15px 0 8px;
+    font-size: 42px;
+    color: #102a43;
+}
+
+.faculty-title p {
+    color: #66788a;
+    font-size: 16px;
+}
+
+/* Faculty Grid */
+.faculty-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+/* Card */
+.faculty-card {
+    background: white;
+    border-radius: 18px;
+    padding: 30px 22px;
+    text-align: center;
+    border: 1px solid #e5eaf0;
+    box-shadow: 0 8px 25px rgba(20, 50, 80, 0.08);
+    transition: 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.faculty-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: #1456a0;
+}
+
+.faculty-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(20, 50, 80, 0.15);
+}
+
+/* Principal */
+.principal-card {
+    border: 2px solid #1456a0;
+    background: linear-gradient(180deg, #eef6ff, #ffffff);
+}
+
+.principal-card::before {
+    height: 7px;
+    background: #0b3d91;
+}
+
+.principal-badge {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 6px 15px;
+    border-radius: 20px;
+    background: #0b3d91;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Photo */
+.faculty-photo {
+    width: 125px;
+    height: 125px;
+    margin: 5px auto 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #e8f1fb;
+    display: block;
+}
+
+.faculty-avatar {
+    width: 125px;
+    height: 125px;
+    margin: 5px auto 20px;
+    border-radius: 50%;
+    background: #eef2f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+}
+
+/* Name */
+.faculty-card h2 {
+    margin: 5px 0 10px;
+    color: #102a43;
+    font-size: 23px;
+}
+
+/* Designation */
+.designation {
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 20px;
+    background: #eaf3ff;
+    color: #1456a0;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* Qualification */
+.qualification {
+    margin: 4px 0;
+    color: #5d6b78;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .faculty-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .faculty-page {
+        padding: 35px 15px;
+    }
+
+    .faculty-title h1 {
+        font-size: 32px;
+    }
+
+    .faculty-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<section class="faculty-page">
+
+    <div class="faculty-title">
+        <span class="tag">OUR FACULTY</span>
+        <h1>Meet Our Faculty</h1>
+        <p>Dedicated faculty members committed to quality technical education.</p>
     </div>
-    {% endfor %}
-  </div>
+
+    <div class="faculty-grid">
+
+        {% for f in faculty %}
+
+        <div class="faculty-card {% if f.designation|lower == 'principal' %}principal-card{% endif %}">
+
+            {% if f.designation|lower == 'principal' %}
+                <span class="principal-badge">PRINCIPAL</span>
+            {% endif %}
+
+            {% if f.photo %}
+                <img
+                    class="faculty-photo"
+                    src="{{ url_for('static', filename='uploads/' + f.photo) }}"
+                    alt="{{ f.name }}"
+                >
+            {% else %}
+                <div class="faculty-avatar">👤</div>
+            {% endif %}
+
+            <h2>
+                {% if f.name|lower == 'lavенya singh' or f.name|lower == 'lavanya singh' %}
+                    Sh. Lavanya Singh
+                {% else %}
+                    {{ f.name }}
+                {% endif %}
+            </h2>
+
+            <div class="designation">
+                {{ f.designation }}
+            </div>
+
+            <p class="qualification">
+                {{ f.qualification }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
 </section>
+
 {% endblock %}
