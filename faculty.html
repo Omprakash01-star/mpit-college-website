@@ -1,1 +1,27 @@
-{% extends "admin/layout.html" %}{% block admin_content %}<h1>Faculty Management</h1><form class="form admin-form" method="post" enctype="multipart/form-data"><input type="hidden" name="id" value=""><label>Name<input name="name" required></label><label>Designation<input name="designation" required></label><label>Qualification<input name="qualification"></label><label>Photo<input type="file" name="photo" accept="image/*"></label><button class="btn">Add Faculty</button></form><div class="admin-list">{% for f in faculty %}<div class="admin-item">{% if f.photo %}<img src="{{url_for('static',filename='uploads/'+f.photo)}}">{% else %}<div class="avatar">👤</div>{% endif %}<div><b>{{f.name}}</b><p>{{f.designation}} · {{f.qualification}}</p></div><a class="danger" href="{{url_for('delete_faculty',fid=f.id)}}" onclick="return confirm('Delete this faculty member?')">Delete</a></div>{% endfor %}</div>{% endblock %}
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-head">
+  <span class="eyebrow">OUR FACULTY</span>
+  <h1>Faculty</h1>
+  <p>Meet our teaching staff.</p>
+</section>
+
+<section class="section">
+  <div class="grid three">
+    {% for f in faculty %}
+    <div class="person">
+      {% if f.photo %}
+      <img src="{{ url_for('static', filename='uploads/' + f.photo) }}" alt="{{ f.name }}">
+      {% else %}
+      <div class="avatar">👤</div>
+      {% endif %}
+
+      <h2>{{ f.name }}</h2>
+      <p>{{ f.designation }}</p>
+      <p>{{ f.qualification }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
