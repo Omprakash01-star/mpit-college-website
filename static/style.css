@@ -8,7 +8,7 @@ a{text-decoration:none;color:inherit}
 nav{display:flex;gap:24px;font-weight:600;font-size:14px}
 nav a:hover,.text-link{color:#0b6fb3}
 .menu-btn{display:none;border:0;background:none;font-size:25px}
-.hero{min-height:560px;padding:100px 8%;display:flex;align-items:center;background:linear-gradient(90deg,#082d4b 0%,#0b547c 55%,#dbeef5 100%);color:white}
+.hero{min-height:560px;padding:100px 8%;display:flex;align-items:center;background:linear-gradient(90deg,rgba(8,45,75,.80),rgba(8,45,75,.35)),url("/static/uploads/COLLEGE_PHOTO.jpeg") center center/cover no-repeat;color:white}
 .hero h1{font-size:clamp(42px,7vw,76px);line-height:1.05;max-width:800px;margin:12px 0}
 .hero p{font-size:22px;margin-bottom:28px}
 .eyebrow{letter-spacing:3px;font-size:12px;font-weight:800;opacity:.75}
