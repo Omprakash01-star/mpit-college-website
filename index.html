@@ -4,20 +4,14 @@
 
 {% block content %}
 
-<!-- HERO SECTION -->
 <section class="hero">
   <div class="hero-content">
-
     <span class="eyebrow">WELCOME TO</span>
 
     <h1>{{ site.college_name }}</h1>
 
     <p class="hero-subtitle">
-      {{ site.tagline }}
-    </p>
-
-    <p class="creator">
-      CREATE BY OM PRAKASH
+      Create by <strong>OM PRAKASH</strong>
     </p>
 
     <div class="hero-buttons">
@@ -29,28 +23,28 @@
         Explore College
       </a>
     </div>
-
   </div>
 </section>
 
 
-<!-- ACADEMICS SECTION -->
 <section class="section">
+
   <div class="section-head">
     <div>
       <span class="eyebrow">ACADEMICS</span>
       <h2>Our Programs</h2>
     </div>
 
-    <a href="{{ url_for('courses') }}">View All →</a>
+    <a class="btn" href="{{ url_for('courses') }}">
+      View All Courses
+    </a>
   </div>
 
   <div class="grid three">
 
-    {% for c in courses[:3] %}
-    <div class="card">
-      <div class="card-icon">🎓</div>
+    {% for c in courses %}
 
+    <div class="card">
       <h3>{{ c.name }}</h3>
 
       <p>
@@ -60,13 +54,21 @@
 
       <p>{{ c.description }}</p>
     </div>
+
+    {% else %}
+
+    <div class="card">
+      <h3>Courses Coming Soon</h3>
+      <p>Please check back for updated course information.</p>
+    </div>
+
     {% endfor %}
 
   </div>
+
 </section>
 
 
-<!-- FACULTY SECTION -->
 <section class="section soft">
 
   <div class="section-head">
@@ -75,28 +77,38 @@
       <h2>Meet Our Faculty</h2>
     </div>
 
-    <a href="{{ url_for('faculty') }}">View Faculty →</a>
+    <a class="btn" href="{{ url_for('faculty') }}">
+      View Faculty
+    </a>
   </div>
 
   <div class="grid three">
 
-    {% for f in faculty[:3] %}
-    <div class="person">
+    {% for f in faculty %}
+
+    <div class="person card">
 
       {% if f.photo %}
+
       <img
         src="{{ url_for('static', filename='uploads/' + f.photo) }}"
         alt="{{ f.name }}"
       >
+
       {% else %}
+
       <div class="avatar">👤</div>
+
       {% endif %}
 
-      <h2>{{ f.name }}</h2>
+      <h3>{{ f.name }}</h3>
+
       <p>{{ f.designation }}</p>
+
       <p>{{ f.qualification }}</p>
 
     </div>
+
     {% endfor %}
 
   </div>
@@ -104,21 +116,23 @@
 </section>
 
 
-<!-- GALLERY SECTION -->
 <section class="section">
 
   <div class="section-head">
     <div>
       <span class="eyebrow">CAMPUS LIFE</span>
-      <h2>College Gallery</h2>
+      <h2>Gallery</h2>
     </div>
 
-    <a href="{{ url_for('gallery') }}">View Gallery →</a>
+    <a class="btn" href="{{ url_for('gallery') }}">
+      View Gallery
+    </a>
   </div>
 
   <div class="gallery big">
 
-    {% for g in gallery[:3] %}
+    {% for g in gallery %}
+
     <figure>
 
       <img
@@ -126,11 +140,10 @@
         alt="{{ g.title }}"
       >
 
-      <figcaption>
-        {{ g.title }}
-      </figcaption>
+      <figcaption>{{ g.title }}</figcaption>
 
     </figure>
+
     {% endfor %}
 
   </div>
@@ -138,33 +151,39 @@
 </section>
 
 
-<!-- NOTICE SECTION -->
 <section class="section soft">
 
   <div class="section-head">
+
     <div>
       <span class="eyebrow">LATEST</span>
       <h2>Notice Board</h2>
     </div>
 
-    <a href="{{ url_for('notices') }}">All Notices →</a>
   </div>
 
   <div class="notices">
 
-    {% for n in notices[:5] %}
-    <div class="notice">
+    {% for n in notices %}
 
-      <div class="notice-date">
-        {{ n.date }}
-      </div>
+    <article class="notice">
 
       <div>
         <h3>{{ n.title }}</h3>
-        <p>{{ n.body }}</p>
+        <p>{{ n.content }}</p>
       </div>
 
+      <small>{{ n.created_at }}</small>
+
+    </article>
+
+    {% else %}
+
+    <div class="card">
+      <h3>No notices yet</h3>
+      <p>New college notices will appear here.</p>
     </div>
+
     {% endfor %}
 
   </div>
@@ -172,40 +191,21 @@
 </section>
 
 
-<!-- ABOUT COLLEGE -->
 <section class="section">
 
-  <div class="section-head">
-    <div>
-      <span class="eyebrow">ABOUT US</span>
-      <h2>Education & Excellence</h2>
-    </div>
+  <div class="card" style="text-align:center;">
 
-    <a href="{{ url_for('about') }}">Read More →</a>
-  </div>
+    <span class="eyebrow">START YOUR JOURNEY</span>
 
-  <div class="prose">
-    <p>
-      {{ site.about }}
-    </p>
-  </div>
-
-</section>
-
-
-<!-- CREATOR SECTION -->
-<section class="section creator-section">
-
-  <div class="creator-box">
-
-    <span class="eyebrow">WEBSITE</span>
-
-    <h2>CREATE BY OM PRAKASH</h2>
+    <h2>Admissions are open</h2>
 
     <p>
-      Designed and developed for
-      {{ site.college_name }}.
+      Contact the college for admission details and enquiries.
     </p>
+
+    <a class="btn" href="{{ url_for('admission') }}">
+      Apply / Enquire
+    </a>
 
   </div>
 
